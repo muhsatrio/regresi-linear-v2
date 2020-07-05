@@ -18,6 +18,10 @@ export default {
     return {
       fields: [
         {
+          key: 'no',
+          label: 'No'
+        },
+        {
           key: 'x',
           label: `X`
         },

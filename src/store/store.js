@@ -7,6 +7,7 @@ const store = new Vuex.Store({
     state: {
         totalRow: 3,
         values: [],
+        convertedXY: [],
         clicked: false,
         sum_x: 0,
         sum_y: 0,
@@ -27,6 +28,7 @@ const store = new Vuex.Store({
                 state.values = [];
                 for (let i=0;i<state.totalRow;i++) {
                     state.values = [...state.values, {
+                        no: i+1,
                         x: 0,
                         y: 0,
                         x2: 0,
@@ -37,7 +39,9 @@ const store = new Vuex.Store({
             }
         },
         addHandler (state) {
+            const totalTable = state.values.length;
             state.values = [...state.values, {
+                no: totalTable+1,
                 x: 0,
                 y: 0,
                 x2: 0,
@@ -67,9 +71,11 @@ const store = new Vuex.Store({
             state.b = 0;
             state.deltaY = 0;
             state.deltaB = 0;
+            state.convertedXY = [];
             state.tingkatKetelitian = 0;
             for (let i=0;i<state.totalRow;i++) {
                 state.values = [...state.values, {
+                    no: i+1,
                     x: 0,
                     y: 0,
                     x2: 0,
@@ -90,6 +96,7 @@ const store = new Vuex.Store({
                 state.sum_x2 += eachValue.x2;
                 state.sum_y2 += eachValue.y2;
                 state.sum_xy += eachValue.xy;
+                state.convertedXY = [...state.convertedXY, [eachValue.x, eachValue.y]];
             });
             state.b = ((state.values.length*state.sum_xy)-(state.sum_x*state.sum_y))/((state.values.length*state.sum_x2)-(state.sum_x*state.sum_x));
             state.deltaY = (1/(state.values.length-2)) * (state.sum_y2-(((state.sum_x2*(state.sum_y*state.sum_y))-(2*state.sum_x*state.sum_y*state.sum_xy)+(state.values.length*state.sum_xy*state.sum_xy))/((state.values.length*state.sum_x2)-(state.sum_x*state.sum_x))));

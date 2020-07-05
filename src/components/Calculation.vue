@@ -1,16 +1,18 @@
 <template>
   <div class="Calculation">
-        <h2>Pengolahan Data</h2>
+    <h2>Calculation</h2>
+        <div class="wrapper">
+            <vue-mathjax :formula="equationb" />
+            <br>
+            <vue-mathjax :formula="equationDeltaY2" />
+            <br>
+            <vue-mathjax :formula="equationDeltaB" />
+            <br>
+            <vue-mathjax :formula="pelaporan" />
+            <br>
+            <vue-mathjax :formula="tingkatKetelitian" />
+        </div>
         <br>
-        <vue-mathjax :formula="equationb" />
-        <br>
-        <vue-mathjax :formula="equationDeltaY2" />
-        <br>
-        <vue-mathjax :formula="equationDeltaB" />
-        <br>
-        <vue-mathjax :formula="pelaporan" />
-        <br>
-        <vue-mathjax :formula="tingkatKetelitian" />
         <hr>
   </div>
 </template>
@@ -33,7 +35,8 @@ export default {
 </script>
 
 <style>
-    .Calculation {
-        margin: 20px 0;
+    .wrapper {
+        margin: 10px auto;
+        width: 750px;
     }
 </style>
