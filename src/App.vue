@@ -6,8 +6,9 @@
     <Calculation v-if="$store.state.clicked" />
     <Grafik v-if="$store.state.clicked" />
     <div class="footer">
-      Copyright &copy; 2020 - <a target="_blank" href="https://instagram.com/muhsatrio__">Muhammad Satrio Wicaksono</a><br>
+      Copyright &copy; 2020 - <a target="_blank" href="https://github.com/muhsatrio">Muhammad Satrio Wicaksono</a><br>
       Developed with <a target="_blank" href="https://vuejs.org/">Vue</a>
+      Created to support Laboratorium Fisika Dasar Telkom University
       <br>
     </div>
   </div>
