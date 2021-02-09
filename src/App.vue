@@ -7,8 +7,8 @@
     <Grafik v-if="$store.state.clicked" />
     <div class="footer">
       Copyright &copy; 2020 - <a target="_blank" href="https://github.com/muhsatrio">Muhammad Satrio Wicaksono</a><br>
-      Developed with <a target="_blank" href="https://vuejs.org/">Vue</a><br>
-      Created to support Laboratorium Fisika Dasar Telkom University
+      Created to support <a target="_blank" href="https://labfisdas-telu.com">Laboratorium Fisika Dasar Telkom University</a><br>
+      <b>#TRA</b> <b>#MSIAYE</b>
       <br>
     </div>
   </div>
