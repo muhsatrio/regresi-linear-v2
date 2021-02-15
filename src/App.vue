@@ -8,7 +8,7 @@
     <div class="footer">
       Copyright &copy; 2017 - <a target="_blank" href="https://instagram.com/muhsatrio__">Muhammad Satrio Wicaksono</a><br>
       Created to support <a target="_blank" href="https://labfisdas-telu.com">Laboratorium Fisika Dasar Telkom University</a><br>
-      Source code could be seen <a href="https://github.com/muhsatrio/regresi-linear-v2" target="_blank">here</a><br>
+      Source code could be seen <a href="https://github.com/muhsatrio/regresi-linear-v2">here</a><br>
       <b>#TRA</b> <b>#MSIAYE</b><br>
       <br>
     </div>
