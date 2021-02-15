@@ -28,4 +28,4 @@ jobs:
     - run: npm i
     - run: npm test
     - run: npm run build
-    - run: sudo cp /home/ubuntu/regresi-linear/_work/regresi-linear-v2/regresi-linear-v2/dist /var/www/regresi.msatrio.com/html
+    - run: sudo cp -r /home/ubuntu/regresi-linear/_work/regresi-linear-v2/regresi-linear-v2/dist /var/www/regresi.msatrio.com/html
