@@ -29,7 +29,7 @@ const store = new Vuex.Store({
                 for (let i=0;i<state.totalRow;i++) {
                     state.values = [...state.values, {
                         no: i+1,
-                        x: 0,
+                        x: i+1,
                         y: 0,
                         x2: 0,
                         y2: 0,
@@ -42,7 +42,7 @@ const store = new Vuex.Store({
             const totalTable = state.values.length;
             state.values = [...state.values, {
                 no: totalTable+1,
-                x: 0,
+                x: totalTable+1,
                 y: 0,
                 x2: 0,
                 y2: 0,
@@ -76,7 +76,7 @@ const store = new Vuex.Store({
             for (let i=0;i<state.totalRow;i++) {
                 state.values = [...state.values, {
                     no: i+1,
-                    x: 0,
+                    x: i+1,
                     y: 0,
                     x2: 0,
                     y2: 0,

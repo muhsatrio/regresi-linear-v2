@@ -1,7 +1,14 @@
 <template>
   <div class="Table">
     <h2>Tabel</h2>
-    <b-table striped :fields="fields" :items="items" />
+    <b-table striped :fields="fields" :items="items">
+      <template #head(x2)>
+        X<sup>2</sup>
+      </template>
+      <template #head(y2)>
+        Y<sup>2</sup>
+      </template>
+    </b-table>
     <hr>
     <h5>&Sigma;X = {{ $store.state.sum_x }}</h5>
     <h5>&Sigma;Y = {{ $store.state.sum_y }}</h5>
@@ -18,28 +25,26 @@ export default {
     return {
       fields: [
         {
-          key: 'no',
-          label: 'No'
+          key: "no",
+          label: "No"
         },
         {
-          key: 'x',
-          label: `X`
+          key: "x",
+          label: "X"
         },
         {
-          key: 'y',
-          label: `Y`
+          key: "y",
+          label: "Y"
         },
         {
-          key: 'x2',
-          label: `X2`
+          key: "x2",
         },
         {
-          key: 'y2',
-          label: `Y2`
+          key: "y2",
         },
         {
-          key: 'xy',
-          label: `XY`
+          key: "xy",
+          label: "XY"
         },
       ],
       items: this.$store.getters.values
