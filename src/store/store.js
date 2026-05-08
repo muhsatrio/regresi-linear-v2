@@ -17,7 +17,8 @@ const store = new Vuex.Store({
         b: 0,
         deltaY: 0,
         deltaB: 0,
-        tingkatKetelitian: 0
+        tingkatKetelitian: 0,
+        history: []
     },
     mutations: {
         initValues (state) {
@@ -87,6 +88,13 @@ const store = new Vuex.Store({
             state.clicked = false;
         },
         submitHandler (state) {
+            state.sum_x = 0;
+            state.sum_y = 0;
+            state.sum_x2 = 0;
+            state.sum_y2 = 0;
+            state.sum_xy = 0;
+            state.convertedXY = [];
+
             state.values.forEach(eachValue => {
                 eachValue.x2 = eachValue.x * eachValue.x;
                 eachValue.y2 = eachValue.y * eachValue.y;
@@ -103,7 +111,53 @@ const store = new Vuex.Store({
             state.deltaB = Math.sqrt(state.deltaY) * Math.sqrt((state.values.length)/((state.values.length*state.sum_x2)-(state.sum_x*state.sum_x)));
             state.tingkatKetelitian = (1-(state.deltaB/state.b))*100;
             state.clicked = true;
+
+            // Save to history
+            const newHistoryItem = {
+                id: Date.now(),
+                timestamp: new Date().toLocaleString(),
+                b: state.b,
+                deltaB: state.deltaB,
+                tingkatKetelitian: state.tingkatKetelitian,
+                totalRow: state.values.length,
+                inputValues: JSON.parse(JSON.stringify(state.values)) // Deep copy of input values
+            };
+            state.history = [newHistoryItem, ...state.history];
+            localStorage.setItem('regressionHistory', JSON.stringify(state.history));
+
             console.log(state);
+        },
+        loadHistory (state) {
+            const savedHistory = localStorage.getItem('regressionHistory');
+            if (savedHistory) {
+                state.history = JSON.parse(savedHistory);
+            }
+        },
+        loadHistoryItem (state, historyItem) {
+            state.values = JSON.parse(JSON.stringify(historyItem.inputValues));
+            state.totalRow = historyItem.totalRow;
+            state.clicked = false; // Reset clicked to allow re-submission/editing
+            
+            // Reset other calculation states
+            state.sum_x = 0;
+            state.sum_y = 0;
+            state.sum_x2 = 0;
+            state.sum_y2 = 0;
+            state.sum_xy = 0;
+            state.b = 0;
+            state.deltaY = 0;
+            state.deltaB = 0;
+            state.tingkatKetelitian = 0;
+            state.tingkatKetelitian = 0;
+            state.convertedXY = [];
+        },
+        removeHistoryItem (state, id) {
+            state.history = state.history.filter(item => item.id !== id);
+            localStorage.setItem('regressionHistory', JSON.stringify(state.history));
+        },
+        clearHistory (state) {
+            state.history = [];
+            localStorage.removeItem('regressionHistory');
         }
     },
     getters: {
@@ -112,6 +166,9 @@ const store = new Vuex.Store({
         },
         values: state => {
             return state.values;
+        },
+        history: state => {
+            return state.history;
         }
     }
 });

@@ -5,6 +5,7 @@
     <Table v-if="$store.state.clicked" />
     <Calculation v-if="$store.state.clicked" />
     <Grafik v-if="$store.state.clicked" />
+    <History />
     <div class="footer">
       Copyright &copy; 2017 - <a target="_blank" href="https://msatrio.com">Muhammad Satrio Wicaksono</a><br>
       Created to support <a target="_blank" href="https://labfisdas-telu.com">Laboratorium Fisika Dasar Telkom University</a><br>
@@ -21,6 +22,7 @@ import InputBox from './components/InputBox';
 import Calculation from './components/Calculation';
 import Table from './components/Table';
 import Grafik from './components/Grafik';
+import History from './components/History';
 
 export default {
   name: 'App',
@@ -28,7 +30,11 @@ export default {
     InputBox,
     Calculation,
     Table,
-    Grafik
+    Grafik,
+    History
+  },
+  mounted() {
+    this.$store.commit('loadHistory');
   }
 }
 </script>
