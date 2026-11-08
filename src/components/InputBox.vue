@@ -29,10 +29,10 @@
     <div v-if="$store.state.clicked" class="row justify-content-center">
       <button class="btn btn-primary centerPosition" @click="$store.commit('resetHandler')">Ulangi</button>
     </div>
-    <div v-else class="row justify-content-center">
-      <button class="btn btn-primary buttonSpace" @click="$store.commit('submitHandler')">Submit</button>
-      <button class="btn btn-primary buttonSpace" aria-label="Remove row" @click="$store.commit('removeHandler')">↑</button>
-      <button class="btn btn-primary buttonSpace" aria-label="Add row" @click="$store.commit('addHandler')">↓</button>
+    <div v-else class="d-flex flex-nowrap justify-content-center gap-2">
+      <button class="btn btn-primary" @click="$store.commit('submitHandler')">Submit</button>
+      <button class="btn btn-primary" aria-label="Remove row" @click="$store.commit('removeHandler')">↑</button>
+      <button class="btn btn-primary" aria-label="Add row" @click="$store.commit('addHandler')">↓</button>
     </div>
   </div>
 </template>
@@ -67,9 +67,6 @@ export default {
     }
     .eachRowInput {
         margin: 10px 0;
-    }
-    .buttonSpace {
-        margin: 0 5px;
     }
     .centerPosition {
         margin: 0 auto;
