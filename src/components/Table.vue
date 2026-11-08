@@ -1,14 +1,30 @@
 <template>
   <div class="Table">
     <h2>Tabel</h2>
-    <b-table striped :fields="fields" :items="items">
-      <template #head(x2)>
-        X<sup>2</sup>
-      </template>
-      <template #head(y2)>
-        Y<sup>2</sup>
-      </template>
-    </b-table>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>X</th>
+            <th>Y</th>
+            <th>X<sup>2</sup></th>
+            <th>Y<sup>2</sup></th>
+            <th>XY</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in $store.getters.values" :key="item.no">
+            <td>{{ item.no }}</td>
+            <td>{{ item.x }}</td>
+            <td>{{ item.y }}</td>
+            <td>{{ item.x2 }}</td>
+            <td>{{ item.y2 }}</td>
+            <td>{{ item.xy }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <hr>
     <h5>&Sigma;X = {{ $store.state.sum_x }}</h5>
     <h5>&Sigma;Y = {{ $store.state.sum_y }}</h5>
@@ -18,43 +34,3 @@
     <hr>
   </div>
 </template>
-
-<script>
-export default {
-  data() {
-    return {
-      fields: [
-        {
-          key: "no",
-          label: "No"
-        },
-        {
-          key: "x",
-          label: "X"
-        },
-        {
-          key: "y",
-          label: "Y"
-        },
-        {
-          key: "x2",
-        },
-        {
-          key: "y2",
-        },
-        {
-          key: "xy",
-          label: "XY"
-        },
-      ],
-      items: this.$store.getters.values
-    }
-  },
-}
-</script>
-
-<style>
-.scrolling-wrapper {
-    overflow-x: auto;
-}
-</style>

@@ -6,37 +6,22 @@
     "node": "24.x"
   },
   "scripts": {
-    "serve": "NODE_OPTIONS=--openssl-legacy-provider vue-cli-service serve",
-    "build": "NODE_OPTIONS=--openssl-legacy-provider vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "serve": "vite",
+    "build": "vite build",
+    "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
-    "apexcharts": "^3.24.0",
-    "bootstrap": "^4.5.0",
-    "bootstrap-vue": "^2.15.0",
-    "core-js": "^3.6.5",
-    "highcharts": "^8.1.2",
-    "highcharts-vue": "^1.3.5",
-    "vue": "^2.7.16",
-    "vue-mathjax": "0.0.11",
-    "vuex": "^3.6.2"
+    "bootstrap": "^5.3.8",
+    "highcharts": "^13.1.1",
+    "highcharts-vue": "^2.0.2",
+    "vue": "^3.5.45",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
-    "@babel/polyfill": "^7.7.0",
-    "@vue/cli-plugin-babel": "~5.0.8",
-    "@vue/cli-plugin-eslint": "~5.0.8",
-    "@vue/cli-service": "~5.0.8",
-    "babel-eslint": "^10.1.0",
-    "bootstrap": "^4.3.1",
+    "@vitejs/plugin-vue": "^6.0.10",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^8.0.3",
-    "mutationobserver-shim": "^0.3.3",
-    "popper.js": "^1.16.0",
-    "portal-vue": "^2.1.6",
-    "sass": "^1.32.7",
-    "sass-loader": "^12.0.0",
-    "vue-cli-plugin-bootstrap-vue": "~0.6.0",
-    "vue-template-compiler": "^2.7.16"
+    "vite": "^8.3.6"
   },
   "eslintConfig": {
     "root": true,
@@ -48,7 +33,8 @@
       "eslint:recommended"
     ],
     "parserOptions": {
-      "parser": "babel-eslint"
+      "ecmaVersion": 2020,
+      "sourceType": "module"
     },
     "rules": {
       "vue/multi-word-component-names": "off"

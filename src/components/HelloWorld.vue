@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <b-alert>test</b-alert>
+    <div class="alert alert-info">test</div>
   </div>
 </template>
 

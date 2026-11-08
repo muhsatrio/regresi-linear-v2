@@ -1,54 +1,39 @@
 <template>
   <div class="InputBox">
     <div v-if="!$store.state.clicked">
-        <p>Masukkan jumlah baris:</p>
-        <b-row>
-            <b-col>
-                <b-form-input type="number" placeholder="Masukkan jumlah baris" v-model.number="$store.state.totalRow" />
-            </b-col>
-            <b-col cols="3">
-                <b-button variant="primary" @click="$store.commit('initValues')">Generate</b-button>
-            </b-col>
-        </b-row>
-        <br><br>
-    </div>
-        <b-row>
-              <b-col>
-              </b-col>
-              <b-col>
-                  <b>X</b>
-              </b-col>
-              <b-col>
-                  <b>Y</b>
-              </b-col>
-        </b-row>
-        <div class="eachRowInput" v-for="(item, index) in $store.getters.values" :key="index">
-          <b-row>
-              <b-col cols="2">
-                  {{ index+1 }}
-              </b-col>
-              <b-col>
-                  <b-form-input type="number" v-model.number="item.x" />
-              </b-col>
-              <b-col>
-                  <b-form-input type="number" v-model.number="item.y" />
-              </b-col>
-          </b-row>
+      <p>Masukkan jumlah baris:</p>
+      <div class="row g-2">
+        <div class="col">
+          <input class="form-control" type="number" placeholder="Masukkan jumlah baris" v-model.number="$store.state.totalRow">
         </div>
-      <b-row v-if="$store.state.clicked">
-        <b-button class="centerPosition" variant="primary" @click="$store.commit('resetHandler')">
-            Ulangi
-        </b-button>
-      </b-row>
-      <b-row v-else>
-        <b-button class="buttonSpace" variant="primary" @click="$store.commit('submitHandler')">Submit</b-button>
-        <b-button class="buttonSpace" variant="primary" @click="$store.commit('removeHandler')">
-            <b-icon icon="chevron-up"></b-icon>
-        </b-button>
-        <b-button class="buttonSpace" variant="primary" @click="$store.commit('addHandler')">
-            <b-icon icon="chevron-down"></b-icon>
-        </b-button>
-      </b-row>
+        <div class="col-3">
+          <button class="btn btn-primary" @click="$store.commit('initValues')">Generate</button>
+        </div>
+      </div>
+      <br><br>
+    </div>
+    <div class="row">
+      <div class="col"></div>
+      <div class="col"><b>X</b></div>
+      <div class="col"><b>Y</b></div>
+    </div>
+    <div class="eachRowInput row g-2" v-for="(item, index) in $store.getters.values" :key="index">
+      <div class="col-2">{{ index + 1 }}</div>
+      <div class="col">
+        <input class="form-control" type="number" v-model.number="item.x">
+      </div>
+      <div class="col">
+        <input class="form-control" type="number" v-model.number="item.y">
+      </div>
+    </div>
+    <div v-if="$store.state.clicked" class="row justify-content-center">
+      <button class="btn btn-primary centerPosition" @click="$store.commit('resetHandler')">Ulangi</button>
+    </div>
+    <div v-else class="row justify-content-center">
+      <button class="btn btn-primary buttonSpace" @click="$store.commit('submitHandler')">Submit</button>
+      <button class="btn btn-primary buttonSpace" aria-label="Remove row" @click="$store.commit('removeHandler')">↑</button>
+      <button class="btn btn-primary buttonSpace" aria-label="Add row" @click="$store.commit('addHandler')">↓</button>
+    </div>
   </div>
 </template>
 

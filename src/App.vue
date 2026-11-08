@@ -18,11 +18,11 @@
 
 <script>
 
-import InputBox from './components/InputBox';
-import Calculation from './components/Calculation';
-import Table from './components/Table';
-import Grafik from './components/Grafik';
-import History from './components/History';
+import InputBox from './components/InputBox.vue';
+import Calculation from './components/Calculation.vue';
+import Table from './components/Table.vue';
+import Grafik from './components/Grafik.vue';
+import History from './components/History.vue';
 
 export default {
   name: 'App',

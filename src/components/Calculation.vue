@@ -2,15 +2,15 @@
   <div class="Calculation">
     <h2>Calculation</h2>
         <div class="wrapper">
-            <vue-mathjax :formula="equationb" />
+            <div class="mathjax-formula" v-text="equationb"></div>
             <br>
-            <vue-mathjax :formula="equationDeltaY2" />
+            <div class="mathjax-formula" v-text="equationDeltaY2"></div>
             <br>
-            <vue-mathjax :formula="equationDeltaB" />
+            <div class="mathjax-formula" v-text="equationDeltaB"></div>
             <br>
-            <vue-mathjax :formula="pelaporan" />
+            <div class="mathjax-formula" v-text="pelaporan"></div>
             <br>
-            <vue-mathjax :formula="tingkatKetelitian" />
+            <div class="mathjax-formula" v-text="tingkatKetelitian"></div>
         </div>
         <br>
         <hr>
@@ -31,6 +31,18 @@ export default {
 
         }
     },
+    mounted() {
+        const typeset = () => window.MathJax?.typesetPromise?.([this.$el])
+        const startup = window.MathJax?.startup?.promise
+
+        if (startup) {
+            startup.then(typeset)
+        } else {
+            document.getElementById('mathjax-script')?.addEventListener('load', () => {
+                window.MathJax?.startup?.promise?.then(typeset)
+            }, { once: true })
+        }
+    }
 }
 </script>
 

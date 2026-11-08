@@ -2,47 +2,40 @@
   <div class="History" v-if="$store.getters.history.length > 0">
     <hr>
     <h3>Riwayat Perhitungan</h3>
-    <b-table striped hover bordered :items="$store.getters.history" :fields="fields">
-        <template v-slot:cell(b)="data">
-            {{ data.value ? data.value.toFixed(4) : '-' }}
-        </template>
-        <template v-slot:cell(deltaB)="data">
-            {{ data.value ? data.value.toFixed(4) : '-' }}
-        </template>
-        <template v-slot:cell(tingkatKetelitian)="data">
-            {{ data.value ? data.value.toFixed(2) : '-' }}%
-        </template>
-        <template v-slot:cell(muat)="data">
-            <b-button size="sm" variant="primary" @click="loadItem(data.item)" class="mr-2">
-                Muat
-            </b-button>
-            <b-button size="sm" variant="danger" @click="$store.commit('removeHistoryItem', data.item.id)">
-                Hapus
-            </b-button>
-        </template>
-    </b-table>
-    <b-button variant="danger" size="sm" @click="$store.commit('clearHistory')">Hapus Semua Riwayat</b-button>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover table-bordered">
+        <thead>
+          <tr>
+            <th>Waktu</th>
+            <th>Jml Baris</th>
+            <th>b</th>
+            <th>Δb</th>
+            <th>Ketelitian</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in $store.getters.history" :key="item.id">
+            <td>{{ item.timestamp }}</td>
+            <td>{{ item.totalRow }}</td>
+            <td>{{ item.b ? item.b.toFixed(4) : '-' }}</td>
+            <td>{{ item.deltaB ? item.deltaB.toFixed(4) : '-' }}</td>
+            <td>{{ item.tingkatKetelitian ? item.tingkatKetelitian.toFixed(2) : '-' }}%</td>
+            <td>
+              <button class="btn btn-primary btn-sm me-2" @click="loadItem(item)">Muat</button>
+              <button class="btn btn-danger btn-sm" @click="$store.commit('removeHistoryItem', item.id)">Hapus</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <button class="btn btn-danger btn-sm" @click="$store.commit('clearHistory')">Hapus Semua Riwayat</button>
   </div>
 </template>
 
 <script>
 export default {
     name: 'History',
-    data() {
-        return {}
-    },
-    computed: {
-        fields() {
-            return [
-                { key: 'timestamp', label: 'Waktu' },
-                { key: 'totalRow', label: 'Jml Baris' },
-                { key: 'b', label: 'b' },
-                { key: 'deltaB', label: 'Δb' },
-                { key: 'tingkatKetelitian', label: 'Ketelitian' },
-                { key: 'muat', label: 'Aksi' }
-            ]
-        }
-    },
     methods: {
         loadItem(item) {
             this.$store.commit('loadHistoryItem', item);
